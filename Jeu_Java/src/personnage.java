@@ -13,7 +13,7 @@ public class personnage {
 	//Constructeur de la classe personnage 
 	
 	public personnage(String pnom, int pvie, int presistance, int pforce ) {
-		System.out.println("Création de votre personnage effectué !");
+		System.out.println("Création de votre personnage et du plateau effectuée !");
 		nom_personnage = pnom;
 		vitalite_personnage = pvie;
 		resistance_personnage = presistance;

@@ -74,7 +74,16 @@ public class Jeu {
 	        //Création de l'objet personnage
         	personnage perso = new personnage(pnom,pvie,presistance,pforce); //Instanciation de la classe personnage
 
-	        
+	        //Création du plateau 
+        	int[][] plateau1 = new int[5][4];
+        	
+        	//Remplissage d'un tableau de 0
+        	for(int i_plateau=0; i_plateau< plateau1.length; i_plateau++) {
+            	for(int j_plateau=0; j_plateau< plateau1[0].length; j_plateau++) {
+            		plateau1[i_plateau][j_plateau]=0;
+            	}
+        	}
+        	//Test d'une case System.out.println(plateau1[3][1]);
 	    }
 	
 }
