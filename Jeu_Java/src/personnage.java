@@ -20,4 +20,31 @@ public class personnage {
 		force_personnage = pforce;
 	}
 	
+	//Getter
+	public String getnom() {
+		return(nom_personnage);
+	}
+	public int getvitalite() {
+		return(vitalite_personnage);
+	}
+	public int getresistance() {
+		return(resistance_personnage);
+	}
+	public int getforce() {
+		return(force_personnage);
+	}
+	
+	//Setter
+	public void setnom(String pnom) {
+		nom_personnage = pnom;
+	}
+	public void setvie(int pvie) {
+		vitalite_personnage = pvie;
+	}
+	public void setresistance(int presistance) {
+		resistance_personnage = presistance;
+	}
+	public void setforce(int pforce) {
+		force_personnage = pforce;
+	}
 }

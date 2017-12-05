@@ -75,15 +75,13 @@ public class Jeu {
         	personnage perso = new personnage(pnom,pvie,presistance,pforce); //Instanciation de la classe personnage
 
 	        //Création du plateau 
-        	int[][] plateau1 = new int[5][4];
+        	Plateau_de_jeu plateau = new Plateau_de_jeu(5,4);
+        	//Afficher le tableau 
+        	//plateau.afficher();
         	
-        	//Remplissage d'un tableau de 0
-        	for(int i_plateau=0; i_plateau< plateau1.length; i_plateau++) {
-            	for(int j_plateau=0; j_plateau< plateau1[0].length; j_plateau++) {
-            		plateau1[i_plateau][j_plateau]=0;
-            	}
-        	}
-        	//Test d'une case System.out.println(plateau1[3][1]);
+        	//Placement du joueur
+        	plateau.positionner(1,1,'O');
+        	plateau.afficher();
 	    }
 	
 }
