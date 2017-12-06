@@ -82,6 +82,11 @@ public class Jeu {
         	//Placement du joueur
         	plateau.positionner(1,1,'O');
         	plateau.afficher();
+        	
+        	//NE MARCHE PAS
+        	//int i_personnage = plateau.get_i();
+        	//i_personnage = plateau.recup_pos('O')[0];
+        	//System.out.println(plateau.recup_pos('O'));
 	    }
 	
 }
