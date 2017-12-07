@@ -80,13 +80,24 @@ public class Jeu {
         	//plateau.afficher();
         	
         	//Placement du joueur
-        	plateau.positionner(1,1,'O');
+        	plateau.positionner(1,3,'O');
         	plateau.afficher();
         	
-        	//NE MARCHE PAS
-        	//int i_personnage = plateau.get_i();
-        	//i_personnage = plateau.recup_pos('O')[0];
-        	//System.out.println(plateau.recup_pos('O'));
+        	//Variables de position pour afficher afficher au joueur 
+        	int i_personnage =0;
+        	int j_personnage =0;
+        	
+        	i_personnage = plateau.recup_pos('O')[0] +1;
+        	j_personnage = plateau.recup_pos('O')[1] +1;
+        	
+        	//Variables de position contenant la position réelle dans le tableau
+        	int i_reel =0;
+        	int j_reel =0;
+        	
+        	i_personnage = plateau.recup_pos('O')[0];
+        	j_personnage = plateau.recup_pos('O')[1];
+        	
+        	System.out.println("Le personange est en :" + i_personnage +1 +" | "+ j_personnage+1);
 	    }
 	
 }

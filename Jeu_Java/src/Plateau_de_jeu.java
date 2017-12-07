@@ -23,41 +23,35 @@ public class Plateau_de_jeu {
 		}
 	 }
 	
-	//Déclaration des variables de position du personnage en public avec setter & getter
-	public static class position {
-		public static int i_perso;
-		public static int j_perso;	
-	}
+	//Déclaration des variables de position du personnage en public avec setter & getter				
+		
+		public int[] recup_pos(char symbole) {
+			int i_perso=0;
+			int j_perso = 0;
+			int[] tab_position = new int[2] ;
+			//tab_position =new int[1];	
+			
+			for(i_perso=0; i_perso <= longueur; i_perso++) {
+				
+				for(j_perso=0; j_perso <= largeur; j_perso++) {
+				
+					if(plateau_de_jeu[i_perso][j_perso] == symbole) {
+						tab_position[0]= i_perso;
+						tab_position[1] = j_perso;
+						return tab_position; 
+						}
+					} 
+			}
+			return tab_position;
+			
+		}
+		
 	
-	public int get_i() {
-		return(position.i_perso);
-	}
-	public void set_i(int i_perso) {
-		position.i_perso = i_perso;
-	}
-	
+
 	//Récupérer la position d'un symbole dans le tableau
 	//En pratique : servira à déterminer la position du personnage de symbole 0
 	
-	public int[] recup_pos(char symbole) {
-		position.i_perso=0;
-		position.j_perso = 0;
-		int[] tab_position;
-		tab_position =new int[1];	
-		
-		for(position.i_perso=0; position.i_perso < longueur; position.i_perso++) {
-			for(position.j_perso=0; position.j_perso < largeur; position.j_perso++) {
-				
-			}
-				if(plateau_de_jeu[position.i_perso][position.j_perso]== symbole) {
-					tab_position[0]= position.i_perso;
-					tab_position[1] = position.j_perso;
-					return tab_position; 
-				}
-		}
-		return tab_position;
-		
-	}
+	
 	
 	//Méthode 
 	public void afficher() {
