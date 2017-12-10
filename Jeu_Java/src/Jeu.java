@@ -2,16 +2,14 @@ import java.util.Scanner;
 
 public class Jeu {
 
-	 public static void main(String[] args){ 
-		    //Vos données, variables, différents traitements…
-		 
+	 public static void main(String[] args){ 		 
 		 afficher_menu();
 		 int i = 0;
 		 Scanner scan = new Scanner(System.in);
 		 i = scan.nextInt();
-         String s = scan.nextLine();
+         //String s = scan.nextLine();
          System.out.println(i);
-     
+         
          switch (i) {
              case 1:
                  creation_personnage();
@@ -76,28 +74,102 @@ public class Jeu {
 
 	        //Création du plateau 
         	Plateau_de_jeu plateau = new Plateau_de_jeu(5,4);
+        	Plateau_de_jeu carte = new Plateau_de_jeu(5,4);
+
         	//Afficher le tableau 
-        	//plateau.afficher();
+        	carte.vider();
         	
         	//Placement du joueur
-        	plateau.positionner(1,3,'O');
-        	plateau.afficher();
+        	carte.positionner(1,1,'O');
+        	carte.afficher();
         	
         	//Variables de position pour afficher afficher au joueur 
         	int i_personnage =0;
         	int j_personnage =0;
         	
-        	i_personnage = plateau.recup_pos('O')[0] +1;
-        	j_personnage = plateau.recup_pos('O')[1] +1;
-        	
         	//Variables de position contenant la position réelle dans le tableau
         	int i_reel =0;
         	int j_reel =0;
         	
-        	i_personnage = plateau.recup_pos('O')[0];
-        	j_personnage = plateau.recup_pos('O')[1];
+        	int compteur= 0;
+        
+        do {// until compteur = 20
+        	i_personnage = carte.recup_pos('O')[0];
+        	i_personnage = i_personnage +1;// pour correspondre à note plateau de jeu
+        	j_personnage = carte.recup_pos('O')[1];
+        	j_personnage = j_personnage +1;
         	
-        	System.out.println("Le personange est en :" + i_personnage +1 +" | "+ j_personnage+1);
-	    }
-	
+        	i_reel = carte.recup_pos('O')[0];
+        	j_reel = carte.recup_pos('O')[1];
+        	
+        	System.out.println("Le personnage est en : " + i_personnage + " | "+ j_personnage);	
+        	compteur = compteur +1;//a rajouter ne pas incrémenter en qu'a d'érreur de saisie
+
+        	boolean test = false;
+       	 	char valeur = ' ';
+        	do { //until test=false
+            	test = false;
+        		System.out.println("///////////Tour " + compteur + " ///////////\n"
+        	        		+ "\n Phase de déplacement - Faites un choix : \n\n"
+        	        		+ "1 Déplacer vers le haut \n"
+        	                + "2 Déplacer vers le bas\n"
+        	                + "3 Déplacer vers la gauche\n"
+        	                + "4 Déplacer vers la droite");
+        		int i_deplacement = 0;
+        		Scanner scan5 = new Scanner(System.in);
+        		i_deplacement = scan5.nextInt();
+        	
+        		switch (i_deplacement) {
+        			case 1:
+        					test = carte.deplacer_vertical(i_deplacement, i_reel, j_reel);
+        					if(test==true) {
+        						valeur = plateau.gettab(i_reel, j_reel);
+        						carte.settab(i_reel, j_reel, valeur);
+        						carte.settab(i_reel-1, j_reel, 'O');
+        						carte.afficher();
+        					}
+        					break;
+         
+        			case 2:
+        				test = carte.deplacer_vertical(i_deplacement, i_reel, j_reel);
+        				if(test==true) {
+        					//plateau.afficher();
+        					valeur = plateau.gettab(i_reel, j_reel);
+        					carte.settab(i_reel, j_reel, valeur);
+        					carte.settab(i_reel+1, j_reel, 'O');
+        					carte.afficher();
+        				}
+        				break;
+        			
+        			case 3:
+        				test=carte.deplacer_horizontal(i_deplacement, i_reel, j_reel);
+        				if(test==true) {
+        					//plateau.afficher();
+        					valeur = plateau.gettab(i_reel, j_reel);
+        					carte.settab(i_reel, j_reel, valeur);
+        					carte.settab(i_reel, j_reel -1, 'O');
+        					carte.afficher();
+        				}
+        				break;
+        			
+        			case 4:
+        				test=carte.deplacer_horizontal(i_deplacement, i_reel, j_reel);
+        				if(test==true) {
+        					//plateau.afficher();
+        					valeur = plateau.gettab(i_reel, j_reel);
+        					carte.settab(i_reel, j_reel, valeur);
+        					carte.settab(i_reel, j_reel +1, 'O');
+        					carte.afficher();
+        				}
+        			default : 
+        				if(test==true) {
+        					System.out.println("Déplacement effectué ! ");	
+        				}else {
+        					System.out.println("Saisie Incorrecte, recommencer ! ");	
+        					compteur=compteur-1;
+        				}
+        		}//Fin switch
+        	} while(test==false);   		 
+        }while(compteur<21);
+	  }
 }
