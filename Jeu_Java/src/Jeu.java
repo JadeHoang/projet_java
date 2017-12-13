@@ -18,7 +18,7 @@ public class Jeu {
                  quitter();
                  break;
          }//Fin switch
-		 
+		 scan.close();
 	}//Fin de la méthode main
 	 
 	 // Affichage du menu de départ
@@ -51,23 +51,39 @@ public class Jeu {
 	        System.out.println("Vous disposez de " + point_restant + "points restants à répartir dans les trois caractériques (vie, résistance et force) pour " + pnom + "\n" );
 	        
 	        //Définition de la vitalite
-	        System.out.print ("Saisir le nombre de point à mettre en vitalité (maximum 10) : \n");
-	        Scanner scan2 = new Scanner(System.in);
-	        int pvie  = scan.nextInt();
+	        int settings = 0;
+	        int pvie =0;
+	        do {
+	        	System.out.print ("Saisir le nombre de point à mettre en vitalité (maximum 10) : \n");
+	        	pvie  = scan.nextInt();
+	        	if (pvie > 0 && pvie <= 10) settings++;
+	        	else System.out.println("Saisir un nombre eligible svp!!");
+	        } while(settings != 1);
 	        
 	      //Définition de la résistance physique
 	        point_restant = point_restant - pvie;
-	        System.out.print ("Saisir le nombre de point à mettre en résistance physique (maximum 10) : \n");
-	        System.out.print ("Il vous reste : " + point_restant + "\n");
-	        Scanner scan3 = new Scanner(System.in);
-	        int presistance  = scan3.nextInt();
+	        int presistance = 0;
+	        do {
+	        	System.out.print ("Saisir le nombre de point à mettre en résistance physique (maximum 10) : \n");
+	        	System.out.print ("Il vous reste : " + point_restant + "\n");
+	        	presistance  = scan.nextInt();
+	        	point_restant = point_restant - presistance;
+	        	if (presistance >= 0 && presistance <= 10 && point_restant >= 0) settings++;
+	        	else { 
+	        		System.out.println("Saisir un nombre eligible svp!!");
+	        		point_restant = point_restant + presistance;
+	        	}
+	        } while (settings != 2);
 	        
 		    //Définition de la force
-	        point_restant = point_restant - presistance;
-	        System.out.print ("Saisir le nombre de point à mettre en force (maximum 10) : \n");
-	        System.out.print ("Il vous reste : " + point_restant + "\n");
-	        Scanner scan4 = new Scanner(System.in);
-	        int pforce  = scan4.nextInt();
+	        int pforce = 0;
+	        do {
+	        	System.out.print ("Saisir le nombre de point à mettre en force (maximum 10) : \n");
+	        	System.out.print ("Il vous reste : " + point_restant + "\n");
+		        pforce = scan.nextInt();
+		        if (pforce >= 0 && pforce <= 10 && point_restant >= pforce) settings++;
+	        	else System.out.println("Saisir un nombre eligible svp!!");
+	        } while (settings != 3);
 	        
 	        //Création de l'objet personnage
         	personnage perso = new personnage(pnom,pvie,presistance,pforce); //Instanciation de la classe personnage
@@ -116,8 +132,7 @@ public class Jeu {
         	                + "3 Déplacer vers la gauche\n"
         	                + "4 Déplacer vers la droite");
         		int i_deplacement = 0;
-        		Scanner scan5 = new Scanner(System.in);
-        		i_deplacement = scan5.nextInt();
+        		i_deplacement = scan.nextInt();
         	
         		switch (i_deplacement) {
         			case 1:
@@ -171,5 +186,6 @@ public class Jeu {
         		}//Fin switch
         	} while(test==false);   		 
         }while(compteur<21);
+        scan.close();
 	  }
 }
