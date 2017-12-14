@@ -1,5 +1,3 @@
-
-
 public class Plateau_de_jeu {
 
 	int largeur;
@@ -29,12 +27,12 @@ public class Plateau_de_jeu {
 			for(int j=0; j < largeur; j++) {
 				random = (int) Math.floor((Math.random()*100)); //Atttribut un nombre en 0 et 100
 				
-				if(random <= 10) {//revient a attibuer une proba d'apparition de 10% 
+				if(random <= 20) {//revient a attibuer une proba d'apparition de 20% 
 					 plateau_de_jeu[i][j]= 'D'; //Case danger
 				}
 				 
-				if(random >10 && random < 60) {//revient a attibuer une proba d'apparition de 50% 
-					 plateau_de_jeu[i][j]= 'X'; //Case danger
+				if(random >20 && random < 60) {//revient a attibuer une proba d'apparition de 40% 
+					 plateau_de_jeu[i][j]= 'X'; //Case rien
 				}
 				
 				if(random >=60 && random < 80) {//revient a attibuer une proba d'apparition de 20% 
@@ -48,18 +46,21 @@ public class Plateau_de_jeu {
 		}
 	 }
 	
-	//Déclaration des variables de position du personnage en public avec setter & getter		
-	
+	//DÃ©claration des variables de position du personnage en public avec setter & getter		
+		
+		//RÃ©cupÃ©rer la valeur de la position i,j
 		public char gettab(int i ,int j ) {
 			return plateau_de_jeu[i][j];
 		}
 		
+		//ComplÃ©ter la carte de position i,j avec la valeur voulue
 		public char settab(int i ,int j, char valeur) {
 			plateau_de_jeu[i][j]= valeur;
 			return plateau_de_jeu[i][j];
 		}
 		
-
+		//RÃ©cupÃ©rer la position d'un symbole dans le tableau
+		//En pratique : servira Ã  dÃ©terminer la position du personnage de symbole O
 		public int[] recup_pos(char symbole) {
 			int i_perso=0;
 			int j_perso = 0;
@@ -68,7 +69,7 @@ public class Plateau_de_jeu {
 			for(i_perso=0; i_perso < longueur; i_perso++) {
 				
 				for(j_perso=0; j_perso < largeur; j_perso++) {
-					 //System.out.print(i_perso + " | " + j_perso + " . "); Test pour débug
+					 //System.out.print(i_perso + " | " + j_perso + " . "); Test pour dÃ©bug
 					if(plateau_de_jeu[i_perso][j_perso] == symbole) {
 						tab_position[0]= i_perso;
 						tab_position[1] = j_perso;
@@ -81,26 +82,7 @@ public class Plateau_de_jeu {
 		}
 		
 	
-
-	//Récupérer la position d'un symbole dans le tableau
-	//En pratique : servira à déterminer la position du personnage de symbole 0
-	
-	
-	
-	//Méthode 
-	public void afficher() {
-		System.out.println();
-		
-		for(int i = 0; i < longueur; i++) {
-			for(int j=0; j < largeur; j++) {
-				 System.out.print(" | " + plateau_de_jeu[i][j]);
-			}
-			
-			System.out.println(" | ");
-		}
-		System.out.println();
-	}
-//Méthode pour vider le tableau
+	//MÃ©thode pour vider le tableau
 	public void vider() {
 		for(int i = 0; i < longueur; i++) {
 			for(int j=0; j < largeur; j++) {
@@ -109,10 +91,10 @@ public class Plateau_de_jeu {
 		}
 	}
 	
-	//Méthode de placement
+	//MÃ©thode de placement
 	public void positionner(int i_pos, int j_pos, char symbole) {
-		i_pos = i_pos-1; // car les tableaux Java commencent en [0][0]
-		j_pos=j_pos-1;
+		//i_pos = i_pos-1; // car les tableaux Java commencent en [0][0]
+		//j_pos=j_pos-1;
 		
 		if (i_pos <0 || j_pos <0 || i_pos > longueur || j_pos > largeur) {
 			//Position hors du plateau : Erreur
@@ -121,33 +103,9 @@ public class Plateau_de_jeu {
 		}
 		
 		//if(plateau_de_jeu[i_pos][j_pos]=='X'){	
-			plateau_de_jeu[i_pos][j_pos]= symbole; // 0 représentant le personnage 
+			plateau_de_jeu[i_pos][j_pos]= symbole; // O reprÃ©sentant le personnage 
 		//}					
 	}
 	
-	//direction = 1: haut ; 2: bas ; 3: gauche 4: droite;
-	public boolean deplacer_vertical(int direction, int i_reel, int j_reel) {
-		boolean test = false;
-		if(i_reel == 0 && direction ==1) {
-			System.out.print("Erreur : vous ne pouvez vous déplacer vers le haut !");
-			return test =false;
-		} else if (i_reel == 4 && direction == 2) {
-	        System.out.println("Erreur : vous ne pouvez vous déplacer vers le bas !");
-			return test =false;
-	      }      
-		return test=true;
-		}
-	
-	public boolean deplacer_horizontal(int direction, int i_reel, int j_reel) {
-		boolean test = false;
-		if(j_reel == 0 && direction == 3) {
-			System.out.print("Erreur : vous ne pouvez vous déplacer vers la gauche !");
-			return test =false;
-		} else if (j_reel == 3 && direction == 4) {
-	        System.out.println("Erreur : vous ne pouvez vous déplacer vers la droite !");
-			return test =false;
-	      }      
-		return test=true;
-		}
-	}
+}
 				

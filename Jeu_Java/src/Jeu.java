@@ -1,191 +1,160 @@
 import java.util.Scanner;
 
 public class Jeu {
-
-	 public static void main(String[] args){ 		 
+	
+	//Declarer les variables
+	
+	public static Plateau_de_jeu plateau;
+	public static Carte carte;
+	public static Scanner scan;
+	
+	//Fonction principale
+	 public static void main(String[] args){ 
+		 //Afficher le menu
 		 afficher_menu();
 		 int i = 0;
-		 Scanner scan = new Scanner(System.in);
+		 scan = new Scanner(System.in);
 		 i = scan.nextInt();
          //String s = scan.nextLine();
          System.out.println(i);
          
          switch (i) {
              case 1:
-                 creation_personnage();
+                 creation_personnage();//creation du personnage
                  break;
              case 2:
-                 quitter();
+                 quitter();//arreter le jeu 
                  break;
          }//Fin switch
+		 
+		 
+		 param_jeu();
+		 boucle_jeu();
+		 
 		 scan.close();
-	}//Fin de la méthode main
+	}//Fin de la mÃ©thode main
 	 
-	 // Affichage du menu de départ
+	 // Affichage du menu de dÃ©part
 	  public static void afficher_menu() {
 	        System.out.println("///////////Jeu de survie///////////\n\n"
 	        		+ "\n MENU :Faites votre choix\n\n"
-	        		+ " 1 Pour créer votre personnage\n"
+	        		+ " 1 Pour crÃ©er votre personnage\n"
 	                + "\n 2 Pour quitter l'application\n");
 	  }
 	  
+	 //Arreter le jeu
 	    public static void quitter() {
 	        System.out.println("Vous fermez l'application");
-	        System.exit(0);//Ne marche pas trouver une alternative
+	        System.exit(0);
 	    }
-	    
+	   
+	 // CrÃ©ation du personnage
 	    public static void creation_personnage() {
 	    	int point_restant = 15;
 	    	
-	        System.out.println("Création de votre personnage\n");	
+	        System.out.println("CrÃ©ation de votre personnage\n");	
 
 	        // A ajouter :
-	        //1- une condition de 10 points max par caractéristique
-	        //2- vérifier que la saisie de dépasse pas le nombre de points restants
+	        //1- une condition de 10 points max par caractÃ©ristique
+	        //2- vÃ©rifier que la saisie de dÃ©passe pas le nombre de points restants
 	        
-	        //Définition du nom 
+	        //DÃ©finition du nom 
 	        System.out.print ("Saisir son nom : \n");
-	        Scanner scan = new Scanner(System.in);
-	        String pnom  = scan.nextLine();
 	        
-	        System.out.println("Vous disposez de " + point_restant + "points restants à répartir dans les trois caractériques (vie, résistance et force) pour " + pnom + "\n" );
+	        String pnom  = scan.next();
 	        
-	        //Définition de la vitalite
+	        System.out.println("Vous disposez de " + point_restant + "points restants Ã  rÃ©partir dans les trois caractÃ©riques (vie, rÃ©sistance et force) pour " + pnom + "\n" );
+	        
+	        //DÃ©finition de la vitalitÃ©
 	        int settings = 0;
-	        int pvie =0;
+	        int pvie = 0;
 	        do {
-	        	System.out.print ("Saisir le nombre de point à mettre en vitalité (maximum 10) : \n");
+	        	System.out.print ("Saisir le nombre de point Ã  mettre en vitalitÃ© (maximum 10) : \n");
 	        	pvie  = scan.nextInt();
-	        	if (pvie > 0 && pvie <= 10) settings++;
+	        	if (pvie > 0 && pvie <= 10) settings++; //condition entre 1 et 10 points
 	        	else System.out.println("Saisir un nombre eligible svp!!");
 	        } while(settings != 1);
 	        
-	      //Définition de la résistance physique
+	      //DÃ©finition de la rÃ©sistance physique
 	        point_restant = point_restant - pvie;
 	        int presistance = 0;
 	        do {
-	        	System.out.print ("Saisir le nombre de point à mettre en résistance physique (maximum 10) : \n");
-	        	System.out.print ("Il vous reste : " + point_restant + "\n");
+	        	System.out.print ("Saisir le nombre de point Ã  mettre en rÃ©sistance physique (maximum 10) : \n");
+	        	System.out.print ("Il vous reste : " + point_restant + "points" + "\n");
 	        	presistance  = scan.nextInt();
 	        	point_restant = point_restant - presistance;
-	        	if (presistance >= 0 && presistance <= 10 && point_restant >= 0) settings++;
+	        	if (presistance >= 0 && presistance <= 10 && point_restant >= 0) settings++;//condition bien vÃ©rifiÃ©e
 	        	else { 
 	        		System.out.println("Saisir un nombre eligible svp!!");
-	        		point_restant = point_restant + presistance;
+	        		point_restant = point_restant + presistance; //rÃ©initialiser les points restants
 	        	}
 	        } while (settings != 2);
 	        
-		    //Définition de la force
+		    //DÃ©finition de la force
 	        int pforce = 0;
 	        do {
-	        	System.out.print ("Saisir le nombre de point à mettre en force (maximum 10) : \n");
+	        	System.out.print ("Saisir le nombre de point Ã  mettre en force (maximum 10) : \n");
 	        	System.out.print ("Il vous reste : " + point_restant + "\n");
 		        pforce = scan.nextInt();
-		        if (pforce >= 0 && pforce <= 10 && point_restant >= pforce) settings++;
+		        if (pforce >= 0 && pforce <= 10 && point_restant >= pforce) settings++; //condition vÃ©rifiÃ©e
 	        	else System.out.println("Saisir un nombre eligible svp!!");
 	        } while (settings != 3);
 	        
-	        //Création de l'objet personnage
+	        //CrÃ©ation de l'objet personnage
         	personnage perso = new personnage(pnom,pvie,presistance,pforce); //Instanciation de la classe personnage
-
-	        //Création du plateau 
-        	Plateau_de_jeu plateau = new Plateau_de_jeu(5,4);
-        	Plateau_de_jeu carte = new Plateau_de_jeu(5,4);
-
-        	//Afficher le tableau 
-        	carte.vider();
+        	
+        	
+	    }
+	    
+	   //Parametrage du jeu
+	    public static void param_jeu(){
+	    	
+	    	//CrÃ©ation du plateau 
+        	plateau = new Plateau_de_jeu(5,4);
+        	carte = new Carte(plateau);
         	
         	//Placement du joueur
-        	carte.positionner(1,1,'O');
+        	carte.positionner(0,0,'O');
         	carte.afficher();
-        	
-        	//Variables de position pour afficher afficher au joueur 
-        	int i_personnage =0;
-        	int j_personnage =0;
-        	
-        	//Variables de position contenant la position réelle dans le tableau
+	    }
+	    
+	    //Boucle principale de jeu
+	    public static void boucle_jeu(){
+	    	//Variables de position contenant la position rÃ©elle dans le tableau
         	int i_reel =0;
         	int j_reel =0;
         	
         	int compteur= 0;
         
-        do {// until compteur = 20
-        	i_personnage = carte.recup_pos('O')[0];
-        	i_personnage = i_personnage +1;// pour correspondre à note plateau de jeu
-        	j_personnage = carte.recup_pos('O')[1];
-        	j_personnage = j_personnage +1;
-        	
-        	i_reel = carte.recup_pos('O')[0];
-        	j_reel = carte.recup_pos('O')[1];
-        	
-        	System.out.println("Le personnage est en : " + i_personnage + " | "+ j_personnage);	
-        	compteur = compteur +1;//a rajouter ne pas incrémenter en qu'a d'érreur de saisie
-
-        	boolean test = false;
-       	 	char valeur = ' ';
-        	do { //until test=false
-            	test = false;
-        		System.out.println("///////////Tour " + compteur + " ///////////\n"
-        	        		+ "\n Phase de déplacement - Faites un choix : \n\n"
-        	        		+ "1 Déplacer vers le haut \n"
-        	                + "2 Déplacer vers le bas\n"
-        	                + "3 Déplacer vers la gauche\n"
-        	                + "4 Déplacer vers la droite");
-        		int i_deplacement = 0;
-        		i_deplacement = scan.nextInt();
-        	
-        		switch (i_deplacement) {
-        			case 1:
-        					test = carte.deplacer_vertical(i_deplacement, i_reel, j_reel);
-        					if(test==true) {
-        						valeur = plateau.gettab(i_reel, j_reel);
-        						carte.settab(i_reel, j_reel, valeur);
-        						carte.settab(i_reel-1, j_reel, 'O');
-        						carte.afficher();
-        					}
-        					break;
-         
-        			case 2:
-        				test = carte.deplacer_vertical(i_deplacement, i_reel, j_reel);
-        				if(test==true) {
-        					//plateau.afficher();
-        					valeur = plateau.gettab(i_reel, j_reel);
-        					carte.settab(i_reel, j_reel, valeur);
-        					carte.settab(i_reel+1, j_reel, 'O');
-        					carte.afficher();
-        				}
-        				break;
-        			
-        			case 3:
-        				test=carte.deplacer_horizontal(i_deplacement, i_reel, j_reel);
-        				if(test==true) {
-        					//plateau.afficher();
-        					valeur = plateau.gettab(i_reel, j_reel);
-        					carte.settab(i_reel, j_reel, valeur);
-        					carte.settab(i_reel, j_reel -1, 'O');
-        					carte.afficher();
-        				}
-        				break;
-        			
-        			case 4:
-        				test=carte.deplacer_horizontal(i_deplacement, i_reel, j_reel);
-        				if(test==true) {
-        					//plateau.afficher();
-        					valeur = plateau.gettab(i_reel, j_reel);
-        					carte.settab(i_reel, j_reel, valeur);
-        					carte.settab(i_reel, j_reel +1, 'O');
-        					carte.afficher();
-        				}
-        			default : 
-        				if(test==true) {
-        					System.out.println("Déplacement effectué ! ");	
-        				}else {
-        					System.out.println("Saisie Incorrecte, recommencer ! ");	
-        					compteur=compteur-1;
-        				}
-        		}//Fin switch
-        	} while(test==false);   		 
-        }while(compteur<21);
-        scan.close();
-	  }
+        	// until compteur = 20 (verifier les tours)
+	        do {
+	        	
+	        	i_reel = carte.recup_pos('O')[0];
+	        	j_reel = carte.recup_pos('O')[1];
+	        	
+	        	System.out.println("Le personnage est en : " + (i_reel+1) + " | "+ (j_reel+1));	
+	        	compteur = compteur +1;//a rajouter ne pas incrÃ©menter en qu'a d'erreur de saisie
+	
+	        	boolean test = false;
+	       	 	
+	        	do { //until test=false (lire les deplacements)
+	            	test = false;
+	        		System.out.println("///////////Tour " + compteur + " ///////////\n"
+	        	        		+ "\n Phase de dÃ©placement - Faites un choix : \n\n"
+	        	        		+ "1 DÃ©placer vers le haut \n"
+	        	                + "2 DÃ©placer vers le bas\n"
+	        	                + "3 DÃ©placer vers la gauche\n"
+	        	                + "4 DÃ©placer vers la droite");
+	        		int i_deplacement = 0;
+	        		
+	        		i_deplacement = scan.nextInt();
+	        	
+	        		test = carte.deplacer(i_deplacement, i_reel, j_reel);
+					if(test==true) {//quand personnage deplacer
+						carte.afficher();
+					}
+					
+	        	} while(test==false);   		 
+	        }while(compteur<21);
+	    }
 }
