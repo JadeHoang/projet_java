@@ -1,23 +1,24 @@
-
-public class personnage {
+public class Personnage {
 	
 	//Nom du personnage
 	String nom_personnage;
 	//Points de vie du personnage
 	int vitalite_personnage;
-	//Points de r�sistance 
+	//Points de résistance 
 	int resistance_personnage;
 	//Point de force
 	int force_personnage;
 	
+	Outil outil;
 	//Constructeur de la classe personnage 
 	
-	public personnage(String pnom, int pvie, int presistance, int pforce ) {
+	public Personnage(String pnom, int pvie, int presistance, int pforce, Outil poutil) {
 		System.out.println("Création de votre personnage et du plateau effectuée !");
 		nom_personnage = pnom;
 		vitalite_personnage = pvie;
 		resistance_personnage = presistance;
 		force_personnage = pforce;
+		outil = poutil;
 	}
 	
 	//Getter
@@ -46,5 +47,38 @@ public class personnage {
 	}
 	public void setforce(int pforce) {
 		force_personnage = pforce;
+	}
+	
+	public void update_carac(Cadre cadre){
+		if (cadre.gettype() == 'N'){ //nourriture
+			vitalite_personnage += 1;
+		}else if(cadre.gettype() == 'C'){ //chaud
+			
+			if(resistance_personnage < cadre.getniveau()){
+				vitalite_personnage -= 1;
+			}
+			resistance_personnage -=1;
+		}else if(cadre.gettype() == 'F'){ //froid
+			
+			if(resistance_personnage < cadre.getniveau()){
+				vitalite_personnage -= 1;
+			}
+			resistance_personnage +=1;
+		}else if(cadre.gettype() == 'L'){ //danger
+			if(force_personnage < cadre.getniveau()){
+				vitalite_personnage -= 1;
+			}else{
+				((Loup)cadre).survie = false;//loup disparait
+			}
+			
+			force_personnage +=1;
+		}else if(cadre.gettype() == 'V'){ //danger
+			if(force_personnage < cadre.getniveau()){
+				if (outil.getvie() > 0){
+					outil.setvie(outil.getvie() - 1);//voleur vole l'outil
+				}
+			}
+			
+		}	
 	}
 }
