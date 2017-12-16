@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -73,13 +72,13 @@ public class Plateau_de_jeu {
 			
 		}
 		
-		for(int i = 0; i < longueur; i++) {
-			System.out.println();
-			for(int j=0; j < largeur; j++) {
-				System.out.print(" ");
-				System.out.print(tab[i][j]);
-			}
-		}
+//		for(int i = 0; i < longueur; i++) {
+//			System.out.println();
+//			for(int j=0; j < largeur; j++) {
+//				System.out.print(" ");
+//				System.out.print(tab[i][j]);
+//			}
+//		}
 		//Remplissage du plateau de jeu
 		for(int i = 0; i < longueur; i++) {
 			for(int j=0; j < largeur; j++) {
