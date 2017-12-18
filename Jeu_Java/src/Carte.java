@@ -1,3 +1,8 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Carte extends Plateau_de_jeu {
 	//parent de type Plateau_de_jeu
@@ -14,16 +19,16 @@ public class Carte extends Plateau_de_jeu {
 	public Cadre deplacer(int direction, int i_reel, int j_reel) {
 		
 		if(i_reel == 0 && direction ==1) { //Si personnage est en 0,0 alors il ne peut pas deplacer vers le haut
-			System.out.print("Erreur : vous ne pouvez vous déplacer vers le haut !");
+//			System.out.print("Erreur : vous ne pouvez vous déplacer vers le haut !");
 			return null;
 		} else if (i_reel == longueur-1 && direction == 2) { //Si personnage est en longueur-1,0 alors il ne peut pas deplacer vers le bas
-	        System.out.println("Erreur : vous ne pouvez vous déplacer vers le bas !");
+//	        System.out.println("Erreur : vous ne pouvez vous déplacer vers le bas !");
 			return null;
 	    } else if(j_reel == 0 && direction == 3) { //Si personnage est en 0,0 alors il ne peut pas deplacer vers la gauche
-			System.out.print("Erreur : vous ne pouvez vous déplacer vers la gauche !");
+//			System.out.print("Erreur : vous ne pouvez vous déplacer vers la gauche !");
 			return null;
 		} else if (j_reel == largeur-1 && direction == 4) { //Si personnage est en 0,largeur-1 alors il ne peut pas deplacer vers la droite
-	        System.out.println("Erreur : vous ne pouvez vous déplacer vers la droite !");
+//	        System.out.println("Erreur : vous ne pouvez vous déplacer vers la droite !");
 			return null;
 	    }         
 		Cadre type = null;
@@ -69,19 +74,39 @@ public class Carte extends Plateau_de_jeu {
 	}
 	
 	//Méthode afficher les parties connues de la carte
-	public void afficher() {
+	public void afficher(GridPane grid) {
 		System.out.println();
-		
+        	
 		for(int i = 0; i < longueur; i++) {
 			for(int j=0; j < largeur; j++) {
 				if (plateau_de_jeu[i][j].type != '.'){
-					System.out.print(" | " + plateau_de_jeu[i][j].type);
+//					System.out.print(" | " + plateau_de_jeu[i][j].type);
+					ImageView cadre = img_case(plateau_de_jeu[i][j].type);
+					GridPane.setRowIndex(cadre, i);
+					GridPane.setColumnIndex(cadre,j);
+					grid.getChildren().add(cadre);
 				}else{
-					System.out.print("    ");
+//					System.out.print("    ");
+					Rectangle rec = new Rectangle();
+					rec.setFill(Color.BLACK);
+					rec.setWidth(50);
+					rec.setHeight(50);
+					GridPane.setRowIndex(rec, i);
+					GridPane.setColumnIndex(rec,j);
+					grid.getChildren().add(rec);
 				}
 			}
 		System.out.println(); //ligne suivante
 		}
 	System.out.println(); 
+	}
+	
+	public ImageView img_case(char nom) {
+		ImageView case_carte = new ImageView();
+		Image image = new Image(getClass().getResourceAsStream("/images/"+nom+".png"));
+        
+        	case_carte.setImage(image);
+        	
+        	return case_carte;
 	}
 }

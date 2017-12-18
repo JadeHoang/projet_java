@@ -13,7 +13,7 @@ public class Personnage {
 	//Constructeur de la classe personnage 
 	
 	public Personnage(String pnom, int pvie, int presistance, int pforce, Outil poutil) {
-		System.out.println("Création de votre personnage et du plateau effectuée !");
+//		System.out.println("Création de votre personnage et du plateau effectuée !");
 		nom_personnage = pnom;
 		vitalite_personnage = pvie;
 		resistance_personnage = presistance;
@@ -54,18 +54,20 @@ public class Personnage {
 			vitalite_personnage += 1;
 		}else if(cadre.gettype() == 'C'){ //chaud
 			
-			if(resistance_personnage < cadre.getniveau()){
+			if(resistance_personnage < cadre.getniveau() && vitalite_personnage>0){
 				vitalite_personnage -= 1;
 			}
-			resistance_personnage -=1;
+			if (resistance_personnage > 0) {
+				resistance_personnage -=1;
+			}
 		}else if(cadre.gettype() == 'F'){ //froid
 			
-			if(resistance_personnage < cadre.getniveau()){
+			if(resistance_personnage < cadre.getniveau() && vitalite_personnage>0){
 				vitalite_personnage -= 1;
 			}
 			resistance_personnage +=1;
 		}else if(cadre.gettype() == 'L'){ //danger
-			if(force_personnage < cadre.getniveau()){
+			if(force_personnage < cadre.getniveau() && vitalite_personnage>0){
 				vitalite_personnage -= 1;
 			}else{
 				((Loup)cadre).survie = false;//loup disparait

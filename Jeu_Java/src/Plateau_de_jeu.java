@@ -39,27 +39,27 @@ public class Plateau_de_jeu {
 		Integer[] array = new Integer[longueur*largeur];
 		
 		for (int i = 0; i < longueur*largeur*0.1; i++){
-			array[i] = 1;
+			array[i] = 1;//Loup
 		}
 		
 		for (int i = (int) (longueur*largeur*0.1); i < longueur*largeur*0.2; i++){
-			array[i] = 2;
+			array[i] = 2;//Voleur
 		}
 		
 		for (int i = (int) (longueur*largeur*0.2); i < longueur*largeur*0.5; i++){
-			array[i] = 3;
+			array[i] = 3;//Rien
 		}
 		
 		for (int i = (int) (longueur*largeur*0.5); i < longueur*largeur*0.6; i++){
-			array[i] = 4;
+			array[i] = 4;//Nourriture
 		}
 		
 		for (int i = (int) (longueur*largeur*0.6); i < longueur*largeur*0.8; i++){
-			array[i] = 5;
+			array[i] = 5;//Chaud
 		}
 		
 		for (int i = (int) (longueur*largeur*0.8); i < longueur*largeur; i++){
-			array[i] = 6;
+			array[i] = 6;//Froid
 		}
 		
 		List<Integer> arrlist = Arrays.asList(array);
