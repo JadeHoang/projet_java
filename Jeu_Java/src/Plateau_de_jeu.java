@@ -87,7 +87,7 @@ public class Plateau_de_jeu {
 				if(tab[i][j] == 1) {//revient a attibuer une proba d'apparition de 10% 
 					 plateau_de_jeu[i][j]= new Loup(niv_loup,i,j); //Case Loup
 				}else if(tab[i][j]  == 2) {//revient a attibuer une proba d'apparition de 10% 
-					 plateau_de_jeu[i][j]= new Cadre('V',0,i,j); //Case Voleur
+					 plateau_de_jeu[i][j]= new Cadre('V',niv_vole,i,j); //Case Voleur
 				}else if(tab[i][j]  == 3) {//revient a attibuer une proba d'apparition de 30% 
 					 plateau_de_jeu[i][j]= new Cadre('X',0,i,j); //Case rien
 				}else if(tab[i][j]  == 4) {//revient a attibuer une proba d'apparition de 10% 
