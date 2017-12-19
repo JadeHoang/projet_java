@@ -3,6 +3,7 @@ public class Outil {
 	int vie;
 	char type;
 	
+	//constructeur
 	public Outil(char ptype,int pvie){
 		type = ptype;
 		vie = pvie;

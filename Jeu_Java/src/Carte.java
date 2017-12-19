@@ -101,6 +101,7 @@ public class Carte extends Plateau_de_jeu {
 	System.out.println(); 
 	}
 	
+	//charger les images
 	public ImageView img_case(char nom) {
 		ImageView case_carte = new ImageView();
 		Image image = new Image(getClass().getResourceAsStream("/images/"+nom+".png"));

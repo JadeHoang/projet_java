@@ -10,8 +10,8 @@ public class Personnage {
 	int force_personnage;
 	
 	Outil outil;
-	//Constructeur de la classe personnage 
 	
+	//Constructeur de la classe personnage 
 	public Personnage(String pnom, int pvie, int presistance, int pforce, Outil poutil) {
 //		System.out.println("Création de votre personnage et du plateau effectuée !");
 		nom_personnage = pnom;
@@ -49,26 +49,27 @@ public class Personnage {
 		force_personnage = pforce;
 	}
 	
+	//mise a jour les caracteristiques du personnage
 	public void update_carac(Cadre cadre){
 		if (cadre.gettype() == 'N'){ //nourriture
-			vitalite_personnage += 1;
+			vitalite_personnage += 1;//vitalité augmente
 		}else if(cadre.gettype() == 'C'){ //chaud
 			
-			if(resistance_personnage < cadre.getniveau() && vitalite_personnage>0){
-				vitalite_personnage -= 1;
+			if(resistance_personnage < cadre.getniveau() && vitalite_personnage>0){//resistance inferieure niveau et il reste encore de vitalite
+				vitalite_personnage -= 1;//vitalité diminue
 			}
-			if (resistance_personnage > 0) {
-				resistance_personnage -=1;
+			if (resistance_personnage > 0) {//si personnage a encore de resistance
+				resistance_personnage -=1;//resistance diminue
 			}
 		}else if(cadre.gettype() == 'F'){ //froid
 			
-			if(resistance_personnage < cadre.getniveau() && vitalite_personnage>0){
-				vitalite_personnage -= 1;
+			if(resistance_personnage < cadre.getniveau() && vitalite_personnage>0){//resistance inferieure niveau et il reste encore de vitalite
+				vitalite_personnage -= 1;//vitalité diminue
 			}
 			resistance_personnage +=1;
 		}else if(cadre.gettype() == 'L'){ //danger
-			if(force_personnage < cadre.getniveau() && vitalite_personnage>0){
-				vitalite_personnage -= 1;
+			if(force_personnage < cadre.getniveau() && vitalite_personnage>0){//force inferieure niveau et il reste encore de vitalite
+				vitalite_personnage -= 1;//vitalité diminue
 			}else{
 				((Loup)cadre).survie = false;//loup disparait
 			}

@@ -5,6 +5,7 @@ public class Cadre {
 	int i_reel;
 	int j_reel;
 	
+	//constructeur
 	public Cadre(char ptype, int pniveau, int pi_reel, int pj_reel){
 		type = ptype;
 		niveau = pniveau;

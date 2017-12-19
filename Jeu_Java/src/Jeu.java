@@ -336,6 +336,7 @@ public class Jeu extends Application{
         	int i_reel =0;
         	int j_reel =0;
 
+        		//si il reste encore de tour
         		if (compteur<plateau.longueur*plateau.largeur) {
 	        	
 	        	i_reel = carte.recup_pos('O')[0];
@@ -344,7 +345,8 @@ public class Jeu extends Application{
 	        
 	        	
 	        	Cadre test;
-
+	        		
+	        		//affiche la situation de la position actuelle
 	            	Text tour = new Text("Il reste " + (plateau.longueur*plateau.largeur - compteur) + " de tours");
 	            	
 	        		int i_deplacement = 0;
@@ -366,6 +368,7 @@ public class Jeu extends Application{
 	        				break;
 	        		}
 	        		
+	        		//le background
 	        		Rectangle bg = new Rectangle(800,600);
 		        	bg.setFill(Color.BLACK);
 		        	VBox menuBox_err = new VBox();//affichage une message erreur 
@@ -387,7 +390,7 @@ public class Jeu extends Application{
 					    
 				    
 						utilise_outil = 0;
-			            	//utiliser outil ou non
+			            	//si personnage entre dans une case qui est compatible avec l'outil
 			            	if((perso.outil.gettype()=='A' && test.gettype()=='F') || (perso.outil.gettype()=='E' && test.gettype()=='C')){
 			            		if(perso.outil.getvie()>0){//si outil a encore de vie
 			            			
@@ -426,6 +429,7 @@ public class Jeu extends Application{
 			            		}
 			            	}
 			            	
+			            	//si il decide d'utiliser l'outil
 			            	if (utilise_outil == 1){
 			            		if((perso.outil.gettype()=='A' && test.gettype()=='F') || (perso.outil.gettype()=='E' && test.gettype()=='C')){
 			            			test.setniveau(test.getniveau()-1);//niveau de zone diminue 1 
@@ -466,7 +470,7 @@ public class Jeu extends Application{
 					}
 		            	
 		            	
-		            	if (perso.getvitalite() == 0 || compteur == plateau.longueur*plateau.largeur) { //si personnage n'a plus de vitalité, quitter le jeu
+		            	if (perso.getvitalite() == 0 || compteur == plateau.longueur*plateau.largeur) { //si personnage n'a plus de vitalité, quitter le jeu ou il n'a plus de tour
 //		            		System.out.println("GAME OVER");
 		            		
 		            		root.getChildren().add(resultat('L'));
@@ -486,7 +490,7 @@ public class Jeu extends Application{
         	}
 
 	    }
-	    
+	    //affichage des proprietes du personnage et d autre propriete du jeu
 	    public Parent affiche_ecran(Text zone, Text tour, VBox menuBox_err, GridPane grid, Rectangle bg ) {
 	    		
 	    		Font f = Font.font("Arial",15);
@@ -542,6 +546,7 @@ public class Jeu extends Application{
 	        	return root;
 	    }
 	    
+	    //affichage l ecran informe le resultat
 	    public VBox resultat(char type) {
 	    		jeu = false;
 		    	Text text;

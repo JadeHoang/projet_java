@@ -23,7 +23,9 @@ public class Plateau_de_jeu {
 //Liste des objets possibles----------
 	// O : personnage
     // X : rien
-	// D : danger
+	// N : nourriture
+	// L : loup
+	// V : voleur
 	// C : chaud
 	// F : froid
 //------------------------------------
