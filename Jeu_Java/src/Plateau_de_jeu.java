@@ -15,7 +15,7 @@ public class Plateau_de_jeu {
 		//niveau froid
 		int niv_froid = 4;
 		//niveau voleur
-		int niv_vole = 3;
+		int niv_vole = 4;
 		//niveau loup
 		int niv_loup = 4;
 		

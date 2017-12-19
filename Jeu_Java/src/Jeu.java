@@ -227,7 +227,7 @@ public class Jeu extends Application{
 	
 	
 	//Fonction principale
-	 public static void main(String[] args){ 
+	public static void main(String[] args){ 
 		 launch(args);
 	}//Fin de la méthode main
 	
@@ -253,14 +253,6 @@ public class Jeu extends Application{
 	}
 	
 	 
-	 // Affichage du menu de départ
-	  /*public void afficher_menu() {
-	        System.out.println("///////////Jeu de survie///////////\n\n"
-	        		+ "\n MENU :Faites votre choix\n\n"
-	        		+ " 1 Pour créer votre personnage\n"
-	                + "\n 2 Pour quitter l'application\n");
-	  }*/
-	  
 	 //Arreter le jeu
 	    public static void quitter() {
 	        System.out.println("Vous fermez l'application");
